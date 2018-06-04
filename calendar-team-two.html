@@ -148,6 +148,8 @@
 
         if(h >= 13) {
             h -= 12;
+        } else if(h === 0) {
+            h = 12;
         }
 
         document.getElementById('time').innerHTML =
