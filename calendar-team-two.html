@@ -49,7 +49,7 @@
 
         .weekdays li {
             display: inline-block;
-            width: 13.6%;
+            width: 14%;
             color: #666;
             text-align: center;
         }
@@ -62,10 +62,13 @@
 
         .days li {
             display: inline-block;
-            width: 13.6%;
+            height: 100px;
+            width: 14.2857%;
             text-align: center;
-            font-size: 16px;
+            font-size: 20px;
             color: #777;
+            border: 1px solid;
+            padding:10px;
         }
 
         .days span.active {
@@ -134,7 +137,7 @@
 
                 //grays out the dates not in this month
                 if (weeks[i][j].format('M') != month) {
-                    li.setAttribute("style", "color: gray; font-style: italic; font-size: small;");
+                    li.setAttribute("style", "color: gray; font-style: italic;");
                 }
 
                 //probably a bad way to check where today is on the calendar
