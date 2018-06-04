@@ -1,64 +1,65 @@
 <!-- HTML and CSS initially adapted from 
      https://www.w3schools.com/howto/howto_css_calendar.asp -->
-	 
+
 <html>
+
 <head>
     <title>ITTP Team Two Calendar</title>
     <style>
         * {
             box-sizing: border-box;
         }
-        
+
         ul {
             list-style-type: none;
         }
-        
+
         .month {
             padding: 70px 25px;
             width: 100%;
             background: #3483eb;
         }
-        
+
         .month ul {
             margin: 0;
             padding: 0;
         }
-        
+
         .month ul li {
             color: white;
             font-size: 20px;
             text-transform: uppercase;
         }
-        
+
         .month .prev {
             float: left;
             padding: 10px;
         }
-        
+
         .month .next {
             float: right;
             padding: 10px;
         }
-        
+
         .weekdays {
             margin: 0;
             padding: 10px 0;
             background-color: #ddd;
         }
-        
+
         .weekdays li {
             display: inline-block;
             width: 13.6%;
             color: #666;
             text-align: center;
         }
-        
+
         .days {
             padding: .9px 0px;
             background: #eee;
             margin: 0;
         }
-        
+
         .days li {
             display: inline-block;
             width: 13.6%;
@@ -66,7 +67,7 @@
             font-size: 16px;
             color: #777;
         }
-        
+
         .days span.active {
             padding: 5px;
             background: #1adc9c;
@@ -79,15 +80,17 @@
     <h1>ITTP Team Two Calendar</h1>
     <div class="month">
         <ul>
-			<li onclick="decrementYear()" class="prev">&#10094;&#10094;</li>
-			<li onclick="decrementMonth()" class="prev">&#10094;</li>
-			<li onclick="incrementYear()" class="next">&#10095;&#10095;</li>
+            <li onclick="decrementYear()" class="prev">&#10094;&#10094;</li>
+            <li onclick="decrementMonth()" class="prev">&#10094;</li>
+            <li onclick="incrementYear()" class="next">&#10095;&#10095;</li>
             <li onclick="incrementMonth()" class="next">&#10095;</li>
-            <li id="month-and-year" style="text-align: center;">May <span style="font-size: 18px;">2018</span></li>
+            <li id="month-and-year" style="text-align: center;">May
+                <span style="font-size: 18px;">2018</span>
+            </li>
         </ul>
     </div>
     <ul class="weekdays">
-	    <li>Sunday</li>
+        <li>Sunday</li>
         <li>Monday</li>
         <li>Tuesday</li>
         <li>Wednesday</li>
@@ -107,134 +110,133 @@
 
 <script>
 
-let weeks = [];
-let month = moment().month() + 1; //zero-indexed
-let year = moment().year();
-let today = moment().date();
+    let weeks = [];
+    let month = moment().month() + 1; //months are zero-indexed
+    let year = moment().year();
+    let today = moment().date();
 
-function loadDates() {
-    //fills the calendar weeks array
-    calculateWeeks();
-	
-	//gets the unordered list that contains the days
-	let days = document.getElementsByClassName("days")[0];
-	
-	//gets the month and year and assigns the date to this element
-	let monthAndYear = document.getElementById("month-and-year");	
-	monthAndYear.innerHTML = formattedDate();
-  
-    //adds the calculated dates to the calendar
-    for(let i = 0; i < weeks.length; i++) {
-	    for(let j = 0; j < weeks[i].length; j++) {
-		    let li = document.createElement("li");
-	        li.innerHTML = weeks[i][j].format('D'); //example: innerHTML = 31
-			
-			//grays out the dates not in this month
-			if(weeks[i][j].format('M') != month) {
-			    li.setAttribute("style", "color: gray; font-style: italic; font-size: small;");
-			}
-						
-			//probably a bad way to check where today is on the calendar
-			if(weeks[i][j].format('D') == moment().date()
-			   && weeks[i][j].format('M') == moment().month() + 1
-			   && weeks[i][j].format('Y') == moment().year()) {
-			    li.innerHTML = "<span class='active'>" + weeks[i][j].format('D') + "</span>";
-			}
-			
-            days.appendChild(li);
-		}  
-    }
-}
+    function loadDates() {
+        //fills the calendar weeks array
+        calculateWeeks();
 
-//adapted from https://github.com/vuejsdevelopers/vuejs-calendar
-function calculateWeeks() {
-    let days = [];
-    weeks = [];
-    
-	//resets the ul that holds the days
-	let daysUL = document.getElementsByClassName("days")[0];
-    daysUL.innerHTML = '';
-	
-    let currentDay = moment(`${year}-${month}`, 'YYYY-M-D');
-	
-    do {
-        days.push(currentDay);
-        currentDay = moment(currentDay).add(1, 'days');
-    } while ((currentDay.month() + 1) === month);
+        //gets the unordered list that contains the days
+        let days = document.getElementsByClassName("days")[0];
 
-    // Add previous days to start of month
-    currentDay = moment(days[0]);
+        //gets the month and year and assigns the date to this element
+        let monthAndYear = document.getElementById("month-and-year");
+        monthAndYear.innerHTML = formattedDate();
 
-    const SUNDAY = 0;
-    const SATURDAY = 6;
+        //adds the calculated dates to the calendar
+        for (let i = 0; i < weeks.length; i++) {
+            for (let j = 0; j < weeks[i].length; j++) {
+                let li = document.createElement("li");
+                li.innerHTML = weeks[i][j].format('D'); //example: innerHTML = 31
 
-    if (currentDay.day() !== SUNDAY) {
-        do {
-            currentDay = moment(currentDay).subtract(1, 'days');
-            days.unshift(currentDay);
-        } while(currentDay.day() !== SUNDAY);
-    }
+                //grays out the dates not in this month
+                if (weeks[i][j].format('M') != month) {
+                    li.setAttribute("style", "color: gray; font-style: italic; font-size: small;");
+                }
 
-    // Add following days to end of month
-    currentDay = moment(days[days.length - 1]);
+                //probably a bad way to check where today is on the calendar
+                if (weeks[i][j].format('D') == moment().date()
+                    && weeks[i][j].format('M') == moment().month() + 1
+                    && weeks[i][j].format('Y') == moment().year()) {
+                    li.innerHTML = "<span class='active'>" + weeks[i][j].format('D') + "</span>";
+                }
 
-    if (currentDay.day() !== SATURDAY) {
-        do {
-            currentDay = moment(currentDay).add(1, 'days');
-            days.push(currentDay);
-        } while(currentDay.day() !== SATURDAY);
-    }
-
-    let week = [];
-
-    for (let day of days) {
-        week.push(day);
-        if (week.length === 7) {
-            weeks.push(week);
-            week = [];
+                days.appendChild(li);
+            }
         }
     }
-}
 
-//adapted from https://github.com/vuejsdevelopers/vuejs-calendar
-function formattedDate() {
-    return moment(`${year}-${month}-1`, 'YYYY-M-D').format('MMMM YYYY');
-}
+    //adapted from https://github.com/vuejsdevelopers/vuejs-calendar
+    function calculateWeeks() {
+        let days = [];
+        weeks = [];
+
+        //resets the ul that holds the days
+        let daysUL = document.getElementsByClassName("days")[0];
+        daysUL.innerHTML = '';
+
+        let currentDay = moment(`${year}-${month}`, 'YYYY-M-D');
+
+        do {
+            days.push(currentDay);
+            currentDay = moment(currentDay).add(1, 'days');
+        } while ((currentDay.month() + 1) === month);
+
+        // Add previous days to start of month
+        currentDay = moment(days[0]);
+
+        const SUNDAY = 0;
+        const SATURDAY = 6;
+
+        if (currentDay.day() !== SUNDAY) {
+            do {
+                currentDay = moment(currentDay).subtract(1, 'days');
+                days.unshift(currentDay);
+            } while (currentDay.day() !== SUNDAY);
+        }
+
+        // Add following days to end of month
+        currentDay = moment(days[days.length - 1]);
+
+        if (currentDay.day() !== SATURDAY) {
+            do {
+                currentDay = moment(currentDay).add(1, 'days');
+                days.push(currentDay);
+            } while (currentDay.day() !== SATURDAY);
+        }
+
+        let week = [];
+
+        for (let day of days) {
+            week.push(day);
+            if (week.length === 7) {
+                weeks.push(week);
+                week = [];
+            }
+        }
+    }
+
+    //adapted from https://github.com/vuejsdevelopers/vuejs-calendar
+    function formattedDate() {
+        return moment(`${year}-${month}-1`, 'YYYY-M-D').format('MMMM YYYY');
+    }
 
 
-function incrementMonth() {
-    if(month === 12) {
-	    month = 1;
-		year += 1;
-	} else {
-	    month += 1;
-	}
-	
-	loadDates();
-}
+    function incrementMonth() {
+        if (month === 12) {
+            month = 1;
+            year += 1;
+        } else {
+            month += 1;
+        }
 
-function decrementMonth() {
-    if(month === 1) {
-	    month = 12;
-		year -= 1;
-	} else {
-	    month -= 1;
-	}
-	
-	loadDates();
-}
+        loadDates();
+    }
 
-function incrementYear() {
-    year++;
-	
-	loadDates();
-}
+    function decrementMonth() {
+        if (month === 1) {
+            month = 12;
+            year -= 1;
+        } else {
+            month -= 1;
+        }
 
-function decrementYear() {
-    year--;
-	
-	loadDates();
-}
+        loadDates();
+    }
+
+    function incrementYear() {
+        year++;
+
+        loadDates();
+    }
+
+    function decrementYear() {
+        year--;
+
+        loadDates();
+    }
 
 </script>
-
