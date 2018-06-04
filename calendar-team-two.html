@@ -1,5 +1,5 @@
-<!-- HTML and CSS initially adapted from 
-     https://www.w3schools.com/howto/howto_css_calendar.asp -->
+<!-- HTML and CSS 
+     Team2 -->
 
 <html>
 
@@ -86,6 +86,7 @@
 
 <body onload="loadDates()">
     <h1>ITTP Team Two Calendar</h1>
+    <div id="txt"></div>
     <div class="month">
         <ul>
             <li onclick="decrementYear()" class="prev">&#10094;&#10094;</li>
@@ -123,10 +124,26 @@
     let year = moment().year();
     let today = moment().date();
 
+    function startTime() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('txt').innerHTML =
+        h + ":" + m + ":" + s;
+        var t = setTimeout(startTime, 500);
+    }
+    function checkTime(i) {
+        if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+        return i;
+    }
+
     function loadDates() {
         //fills the calendar weeks array
         calculateWeeks();
-
+        startTime();
         //gets the unordered list that contains the days
         let days = document.getElementsByClassName("days")[0];
 
