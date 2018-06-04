@@ -8,6 +8,7 @@
     <style>
         * {
             box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
         ul {
@@ -41,17 +42,21 @@
             padding: 10px;
         }
 
-        .weekdays {
+        #day-bar {
+            display: flex;
+            justify-content: flex-start;
             margin: 0;
             padding: 10px 0;
             background-color: #ddd;
+            width: 100%;
         }
 
-        .weekdays li {
+        #day-bar div {
             display: inline-block;
-            width: 14%;
-            color: #666;
+            width: 14.2857%;
+            color: gray;
             text-align: center;
+            font-size: 20px;
         }
 
         .days {
@@ -92,15 +97,15 @@
             </li>
         </ul>
     </div>
-    <ul class="weekdays">
-        <li>Sunday</li>
-        <li>Monday</li>
-        <li>Tuesday</li>
-        <li>Wednesday</li>
-        <li>Thursday</li>
-        <li>Friday</li>
-        <li>Saturday</li>
-    </ul>
+    <div id="day-bar">
+        <div>Sunday</div>
+        <div>Monday</div>
+        <div>Tuesday</div>
+        <div>Wednesday</div>
+        <div>Thursday</div>
+        <div>Friday</div>
+        <div>Saturday</div>
+    </div>
     <ul class="days">
     </ul>
 </body>
