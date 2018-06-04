@@ -3,7 +3,7 @@
 	 
 <html>
 <head>
-    <title>ITTP Team Calendar</title>
+    <title>ITTP Team Two Calendar</title>
     <style>
         * {
             box-sizing: border-box;
@@ -119,9 +119,8 @@ function loadDates() {
 	//gets the unordered list that contains the days
 	let days = document.getElementsByClassName("days")[0];
 	
-	//gets the month and year and assigns it to this element
-	let monthAndYear = document.getElementById("month-and-year");
-	
+	//gets the month and year and assigns the date to this element
+	let monthAndYear = document.getElementById("month-and-year");	
 	monthAndYear.innerHTML = formattedDate();
   
     //adds the calculated dates to the calendar
@@ -130,7 +129,7 @@ function loadDates() {
 		    let li = document.createElement("li");
 	        li.innerHTML = weeks[i][j].format('D'); //example: innerHTML = 31
 			
-			//greys out the dates not in this month
+			//grays out the dates not in this month
 			if(weeks[i][j].format('M') != month) {
 			    li.setAttribute("style", "color: gray; font-style: italic; font-size: small;");
 			}
