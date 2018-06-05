@@ -5,173 +5,320 @@
 <head>
     <title>ITTP Team Two Calendar</title>
     <style>
-* {
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
-}
+        * {
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-.mapouter {
-  text-align: right;
-  height: 500px;
-  width: 600px;
-}
+        .mapouter {
+            text-align: right;
+            height: 500px;
+            width: 600px;
+        }
 
-.gmap_canvas {
-  overflow: hidden;
-  background: none !important;
-  height: 500px;
-  width: 600px;
-}
+        .gmap_canvas {
+            overflow: hidden;
+            background: none !important;
+            height: 500px;
+            width: 600px;
+        }
 
-.header {
-  padding: 50px;
-  width: 100%;
-}
+        .header {
+            padding: 50px;
+            width: 100%;
+        }
 
-ul {
-  list-style-type: none;
-}
+        ul {
+            list-style-type: none;
+        }
 
-.month {
-  padding: 70px 25px;
-  width: 100%;
-  background: #3483eb;
-}
+        .month {
+            padding: 70px 25px;
+            width: 100%;
+            background: #3483eb;
+        }
 
-.month ul {
-  margin: 0;
-  padding: 0;
-}
+        .month ul {
+            margin: 0;
+            padding: 0;
+        }
 
-.month ul li {
-  color: white;
-  font-size: 20px;
-  text-transform: uppercase;
-}
+        .month ul li {
+            color: white;
+            font-size: 20px;
+            text-transform: uppercase;
+        }
 
-.month .prev {
-  float: left;
-  padding: 10px;
-}
+        .month .prev {
+            float: left;
+            padding: 10px;
+        }
 
-.month .next {
-  float: right;
-  padding: 10px;
-}
+        .month .next {
+            float: right;
+            padding: 10px;
+        }
 
-#day-bar {
-  display: flex;
-  justify-content: flex-start;
-  margin: 0;
-  padding: 10px 0;
-  background-color: #ddd;
-  width: 100%;
-}
+        #day-bar {
+            display: flex;
+            justify-content: flex-start;
+            margin: 0;
+            padding: 10px 0;
+            background-color: #ddd;
+            width: 100%;
+        }
 
-#day-bar div {
-  display: inline-block;
-  width: 14.2857%;
-  color: gray;
-  text-align: center;
-  font-size: 20px;
-}
+        #day-bar div {
+            display: inline-block;
+            width: 14.2857%;
+            color: gray;
+            text-align: center;
+            font-size: 20px;
+        }
 
-.days {
-  padding: 0.9px 0px;
-  background: #eee;
-  margin: 0;
-}
+        .days {
+            padding: 0.9px 0px;
+            background: #eee;
+            margin: 0;
+        }
 
-.days li {
-  display: inline-block;
-  height: 100px;
-  width: 14.2857%;
-  text-align: center;
-  font-size: 20px;
-  color: #777;
-  border: 1px solid;
-  padding: 10px;
-}
+        .days li {
+            display: inline-block;
+            height: 100px;
+            width: 14.2857%;
+            text-align: center;
+            font-size: 20px;
+            color: #777;
+            border: 1px solid;
+            padding: 10px;
+        }
 
-.days span.active {
-  padding: 5px;
-  background: #1adc9c;
-  color: white;
-}
+        .days span.active {
+            padding: 5px;
+            background: #1adc9c;
+            color: white;
+        }
 
-#event-form {
-  display: none;
-  box-shadow: 0 2px 4px blue;
-  position: fixed;
-  width: 300px;
-  transform: translate(-50%, -100%);
-  z-index: 10;
-  padding: 1rem;
-  background-color: white;
-  border: 1px blue solid;
-  flex-direction: column;
-  align-content: space-between;
-}
-#event-form.active {
-  display: flex;
-}
-#event-form h4 {
-  margin: 0 0 0.75rem 0;
-  color: gray;
-  font-weight: normal;
-  font-size: 1.15rem;
-}
-#event-form p {
-  font-size: 0.85rem;
-  margin: 0 0 0.85rem 0;
-}
-#event-form > * {
-  width: 100%;
-}
-#event-form .text {
-  margin-bottom: 0.75rem;
-}
-#event-form .text input[type=text] {
-  width: calc(100% - 0.75rem);
-  padding: 0.25rem;
-  font-size: 0.75rem;
-}
-#event-form .buttons {
-  text-align: right;
-}
-#event-form .buttons button {
-  padding: 0.5rem;
-  background-color: blue;
-  border: 1px solid blue;
-  font-weight: bold;
-  border-radius: 2px;
-  color: white;
-}
-#event-form .buttons button:focus {
-  outline: none;
-}
-#event-form .buttons button:hover {
-  background-color: #1414ff;
-  border: 1px solid blue;
-}
-#event-form #close-button {
-  margin: 0;
-  padding: 0;
-  font-size: 1.25rem;
-  background-color: white;
-  position: absolute;
-  border: none;
-  width: 20px;
-  font-weight: bold;
-  color: #666;
-  right: 0.6rem;
-  top: 0.6rem;
-  cursor: pointer;
-}
-#event-form #close-button:focus {
-  outline: none;
-}
-</style>
+        #event-form {
+            display: none;
+            box-shadow: 0 2px 4px blue;
+            position: fixed;
+            width: 300px;
+            transform: translate(-50%, -100%);
+            z-index: 10;
+            padding: 1rem;
+            background-color: white;
+            border: 1px blue solid;
+            flex-direction: column;
+            align-content: space-between;
+        }
+
+        #event-form.active {
+            display: flex;
+        }
+
+        #event-form h4 {
+            margin: 0 0 0.75rem 0;
+            color: gray;
+            font-weight: normal;
+            font-size: 1.15rem;
+        }
+
+        #event-form p {
+            font-size: 0.85rem;
+            margin: 0 0 0.85rem 0;
+        }
+
+        #event-form>* {
+            width: 100%;
+        }
+
+        #event-form .text {
+            margin-bottom: 0.75rem;
+        }
+
+        #event-form .text input[type=text] {
+            width: calc(100% - 0.75rem);
+            padding: 0.25rem;
+            font-size: 0.75rem;
+        }
+
+        #event-form .buttons {
+            text-align: right;
+        }
+
+        #event-form .buttons button {
+            padding: 0.5rem;
+            background-color: blue;
+            border: 1px solid blue;
+            font-weight: bold;
+            border-radius: 2px;
+            color: white;
+        }
+
+        #event-form .buttons button:focus {
+            outline: none;
+        }
+
+        #event-form .buttons button:hover {
+            background-color: #1414ff;
+            border: 1px solid blue;
+        }
+
+        #event-form #close-button {
+            margin: 0;
+            padding: 0;
+            font-size: 1.25rem;
+            background-color: white;
+            position: absolute;
+            border: none;
+            width: 20px;
+            font-weight: bold;
+            color: #666;
+            right: 0.6rem;
+            top: 0.6rem;
+            cursor: pointer;
+        }
+
+        #event-form #close-button:focus {
+            outline: none;
+        }
+
+        .header {
+            padding: 50px;
+            width: 100%;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        .month {
+            padding: 70px 25px;
+            width: 100%;
+            background: #3483eb;
+        }
+
+        .month ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        .month ul li {
+            color: white;
+            font-size: 20px;
+            text-transform: uppercase;
+        }
+
+        .month .prev {
+            float: left;
+            padding: 10px;
+        }
+
+        .month .next {
+            float: right;
+            padding: 10px;
+        }
+
+        #day-bar {
+            display: flex;
+            justify-content: flex-start;
+            margin: 0;
+            padding: 10px 0;
+            background-color: #ddd;
+            width: 100%;
+        }
+
+        #day-bar div {
+            display: inline-block;
+            width: 14.2857%;
+            color: gray;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .days {
+            padding: .9px 0px;
+            background: #eee;
+            margin: 0;
+        }
+
+        .days li {
+            display: inline-block;
+            height: 100px;
+            width: 14.2857%;
+            text-align: center;
+            font-size: 20px;
+            color: #777;
+            border: 1px solid;
+            padding: 10px;
+        }
+
+        .days span.active {
+            padding: 5px;
+            background: #1adc9c;
+            color: white;
+        }
+
+        /* Style inputs */
+
+        input[type=text],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+
+        input[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+        /* Style the container/contact section */
+
+        .container {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 10px;
+        }
+
+        /* Create two columns that float next to eachother */
+
+        .column {
+            float: left;
+            width: 50%;
+            margin-top: 6px;
+            padding: 20px;
+        }
+
+        /* Clear floats after the columns */
+
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+
+        @media screen and (max-width: 600px) {
+            .column,
+            input[type=submit] {
+                width: 100%;
+                margin-top: 0;
+            }
+        }
     </style>
 </head>
 
@@ -208,10 +355,9 @@ ul {
                 frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
         </div>
         <style>
-
         </style>
     </div>
-	<div id="event-form" class="inactive" style="top: 500; left: 500;">
+    <div id="event-form" class="inactive" style="top: 500; left: 500;">
         <h4>Add an event</h4>
         <p>asdf</p>
         <div class="text">
@@ -221,6 +367,38 @@ ul {
             <button> Create</button>
         </div>
         <button id="close-button">&#10005</button>
+    </div>
+
+    <h2>Contact Section</h2>
+    <p>Resize the browser window to see the effect.</p>
+
+    <div class="container">
+        <div style="text-align:center">
+            <h2>Contact Us</h2>
+            <p>Team Two member, or leave us a message:</p>
+        </div>
+        <div class="row">
+            <div class="column">
+                <div id="map" style="width:100%;height:500px"></div>
+            </div>
+            <div class="column">
+                <form action="/action_page.php">
+                    <label for="fname">First Name</label>
+                    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+                    <label for="lname">Last Name</label>
+                    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+                    <label for="country">Country</label>
+                    <select id="country" name="country">
+                        <option value="australia">Australia</option>
+                        <option value="canada">Canada</option>
+                        <option value="usa">USA</option>
+                    </select>
+                    <label for="subject">Subject</label>
+                    <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
     </div>
 </body>
 
