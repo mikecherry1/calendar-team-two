@@ -77,7 +77,7 @@
             font-size: 20px;
             color: #777;
             border: 1px solid;
-            padding:10px;
+            padding: 10px;
         }
 
         .days span.active {
@@ -90,8 +90,8 @@
 
 <body onload="loadDates()">
     <div class="header">
-         <h1 id="headerText">ITTP Team Two Calendar</h1>
-         <div id="time"></div>
+        <h1 id="headerText">ITTP Team Two Calendar</h1>
+        <div id="time"></div>
     </div>
     <div class="month">
         <ul>
@@ -115,10 +115,25 @@
     </div>
     <ul class="days">
     </ul>
-    <div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="500" id="gmap_canvas"
-        src="https://maps.google.com/maps?q=furnace rd,alexandria&t=&z=13&ie=UTF8&iwloc=&output=embed"
-        frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe></div>
-        <style>.mapouter{text-align:right;height:500px;width:600px;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}</style>
+    <div class="mapouter">
+        <div class="gmap_canvas">
+            <iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=furnace rd,alexandria&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+        </div>
+        <style>
+            .mapouter {
+                text-align: right;
+                height: 500px;
+                width: 600px;
+            }
+
+            .gmap_canvas {
+                overflow: hidden;
+                background: none !important;
+                height: 500px;
+                width: 600px;
+            }
+        </style>
     </div>
 </body>
 
@@ -137,10 +152,10 @@
 
     function myMap() {
         var mapProp = {
-            center: new google.maps.LatLng(51.508742,-0.120850),
-            zoom:5,
+            center: new google.maps.LatLng(51.508742, -0.120850),
+            zoom: 5,
         };
-        var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+        var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
     }
 
     function startTime() {
@@ -153,25 +168,25 @@
 
         var pmOrAm = '';
 
-        if(h >= 12) {
+        if (h >= 12) {
             pmOrAm = 'pm';
         } else {
             pmOrAm = 'am'
         }
 
-        if(h >= 13) {
+        if (h >= 13) {
             h -= 12;
-        } else if(h === 0) {
+        } else if (h === 0) {
             h = 12;
         }
 
         document.getElementById('time').innerHTML =
-        h + ":" + m + ":" + s + " " + pmOrAm;
+            h + ":" + m + ":" + s + " " + pmOrAm;
         var t = setTimeout(startTime, 500);
     }
 
     function checkTime(i) {
-        if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+        if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
         return i;
     }
 
