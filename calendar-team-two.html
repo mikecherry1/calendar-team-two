@@ -23,92 +23,16 @@
             width: 600px;
         }
 
-        .header {
-            padding: 50px;
-            width: 100%;
-        }
-
-        ul {
-            list-style-type: none;
-        }
-
-        .month {
-            padding: 70px 25px;
-            width: 100%;
-            background: #3483eb;
-        }
-
-        .month ul {
-            margin: 0;
-            padding: 0;
-        }
-
-        .month ul li {
-            color: white;
-            font-size: 20px;
-            text-transform: uppercase;
-        }
-
-        .month .prev {
-            float: left;
-            padding: 10px;
-        }
-
-        .month .next {
-            float: right;
-            padding: 10px;
-        }
-
-        #day-bar {
-            display: flex;
-            justify-content: flex-start;
-            margin: 0;
-            padding: 10px 0;
-            background-color: #ddd;
-            width: 100%;
-        }
-
-        #day-bar div {
-            display: inline-block;
-            width: 14.2857%;
-            color: gray;
-            text-align: center;
-            font-size: 20px;
-        }
-
-        .days {
-            padding: 0.9px 0px;
-            background: #eee;
-            margin: 0;
-        }
-
-        .days li {
-            display: inline-block;
-            height: 100px;
-            width: 14.2857%;
-            text-align: center;
-            font-size: 20px;
-            color: #777;
-            border: 1px solid;
-            padding: 10px;
-        }
-
-        .days span.active {
-            padding: 5px;
-            background: #1adc9c;
-            color: white;
-        }
-
         #event-form {
             display: none;
-            box-shadow: 0 2px 4px blue;
+            box-shadow: 0 2px 4px #3483e;
             position: fixed;
             width: 300px;
             transform: translate(-50%, -100%);
             z-index: 10;
             padding: 1rem;
             background-color: white;
-            border: 1px blue solid;
+            border: 1px #3483e solid;
             flex-direction: column;
             align-content: space-between;
         }
@@ -150,7 +74,7 @@
         #event-form .buttons button {
             padding: 0.5rem;
             background-color: blue;
-            border: 1px solid blue;
+            border: 1px solid gray;
             font-weight: bold;
             border-radius: 2px;
             color: white;
@@ -238,12 +162,14 @@
         }
 
         .days {
+            
             padding: .9px 0px;
             background: #eee;
             margin: 0;
         }
 
         .days li {
+            overflow: hidden;
             display: inline-block;
             height: 100px;
             width: 14.2857%;
@@ -251,7 +177,7 @@
             font-size: 20px;
             color: #777;
             border: 1px solid;
-            padding: 10px;
+            padding: 20px;
         }
 
         .days span.active {
@@ -352,14 +278,14 @@
 
     <div id="event-form" class="inactive" style="top: 500; left: 500;">
         <h4>Add an event</h4>
-        <p>asdf</p>
+        <p></p>
         <div class="text">
-            <input type="text" />
+            <input id="textInput" type="text" />
         </div>
         <div class="buttons">
-            <button> Create</button>
+            <button onclick="create()"> Create</button>
         </div>
-        <button id="close-button">&#10005</button>
+        <button id="close-button" onclick="closeBox()">&#10005</button>
     </div>
 
     <h2>Contact Section</h2>
@@ -411,6 +337,7 @@
     let month = moment().month() + 1; //months are zero-indexed
     let year = moment().year();
     let today = moment().date();
+    let events = [];
 
     function myMap() {
         var mapProp = {
@@ -466,24 +393,70 @@
         //adds the calculated dates to the calendar
         for (let i = 0; i < weeks.length; i++) {
             for (let j = 0; j < weeks[i].length; j++) {
+                //create a list item and a span to contain notes
                 let li = document.createElement("li");
-                li.innerHTML = weeks[i][j].format('D'); //example: innerHTML = 31
+                let span = document.createElement("span");
+                
+                li.innerHTML = weeks[i][j].format('D') + "<br />"; //example: innerHTML = 31
+                span.value = weeks[i][j];
+                span.style = "font-size: small";
+                 
+                //adds the events to the date
+                for(let i = 0; i < events.length; i++) {
+                    if(span.value.format("MMMM DD YYYY") == events[i].date.format("MMMM DD YYYY")) {
+                        span.innerHTML = span.innerHTML + " " + events[i].note + "<br />";
+                    }
+                }
 
                 //grays out the dates not in this month
                 if (weeks[i][j].format('M') != month) {
                     li.setAttribute("style", "color: gray; font-style: italic;");
                 }
 
-                //probably a bad way to check where today is on the calendar
+                /*probably a bad way to check where today is on the calendar
                 if (weeks[i][j].format('D') == moment().date()
                     && weeks[i][j].format('M') == moment().month() + 1
                     && weeks[i][j].format('Y') == moment().year()) {
-                    li.innerHTML = "<span class='active'>" + weeks[i][j].format('D') + "</span>";
-                }
+                    li.innerHTML = "<span class='active'>" weeks[i][j].format('D') + "</span>;
+                }*/
 
+                li.onclick = clickedBox;
+                li.appendChild(span);
                 days.appendChild(li);
             }
         }
+    }
+
+    function create(event) {
+        let textInput = document.getElementById("textInput");
+        let eventForm = document.getElementById("event-form");
+
+        if(textInput.value.length > 0) {
+            events.push({date: eventForm.value, note: textInput.value});
+        }
+
+        eventForm.classList.add("inactive");
+        eventForm.classList.remove("active");
+        textInput.value = "";
+        loadDates();
+    }
+    
+    function clickedBox(event) {
+        let eventForm = document.getElementById("event-form");
+        eventForm.classList.remove("inactive");
+        eventForm.classList.add("active");
+        eventForm.style = "top: " + event.clientY + "; left: " + event.clientX;
+        let p = eventForm.getElementsByTagName("p")[0];
+        let span = event.target.getElementsByTagName("span")[0];
+
+        p.innerHTML = span.value.format('MMMM DD YYYY');
+        eventForm.value = span.value;
+    }
+
+    function closeBox() {
+        let eventForm = document.getElementById("event-form");
+        eventForm.classList.remove("active");
+        eventForm.classList.add("inactive");
     }
 
     //adapted from https://github.com/vuejsdevelopers/vuejs-calendar
