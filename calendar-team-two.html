@@ -173,7 +173,7 @@
         }
 
         .days li {
-            overflow: auto;
+            overflow: auto;;
             display: inline-block;
             height: 100px;
             width: 14.2857%;
@@ -310,7 +310,7 @@
         <p></p>
         <div class="text">
             Time:
-            <input id="timeInput" type="text" autofocus /> Description:
+            <input id="timeInput" type="text" /> Description:
             <input id="textInput" type="text" />
         </div>
         <div class="buttons">
@@ -394,6 +394,15 @@
     let year = moment().year();
     let today = moment().date();
     let events = [];
+
+    var input = document.getElementById("textInput");
+
+    input.addEventListener("keydown", function (event) {
+        // Number 13 is the "Enter" key on the keyboard
+        if (event.keyCode === 13) {
+            create();
+        }
+    });
 
     var jsalarm = {
         padfield: function (f) {
@@ -533,7 +542,7 @@
                 let todaysDate = "" + moment().year() + "-" + (moment().month() + 1) + "-" + moment().date();
 
                 if (weeks[i][j].unix() == moment(todaysDate, "YYYY-MM-DD").unix()) {
-                    li.style.backgroundColor = "lightblue"; 
+                    li.style.backgroundColor = "lightblue";
                 }
 
                 li.innerHTML = weeks[i][j].format('D') + "<br />"; //example: innerHTML = 31
