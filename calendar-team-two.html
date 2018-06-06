@@ -1,4 +1,4 @@
-<!-- Team2 -->
+<!-- Team 2 -->
 
 <html>
 
@@ -9,7 +9,7 @@
             box-sizing: border-box;
             font-family: Arial, Helvetica, sans-serif;
         }
-        
+
         #reset {
             font-size: smaller;
         }
@@ -251,100 +251,32 @@
         }
     </style>
 </head>
-  <style type="text/css">
+<style type="text/css">
+    #jsalarmclock {
+        font-family: Tahoma;
+        font-weight: bold;
+        font-size: 12px;
+    }
 
-  #jsalarmclock{
-  font-family: Tahoma;
-  font-weight: bold;
-  font-size: 12px;
-  }
+    #jsalarmclock div {
+        margin-bottom: 0.8em;
+    }
 
-  #jsalarmclock div{
-  margin-bottom: 0.8em;
-  }
+    #jsalarmclock div.leftcolumn {
+        float: left;
+        width: 150px;
+        font-size: 13px;
+        background-color: lightyellow;
+        clear: left;
+    }
 
-  #jsalarmclock div.leftcolumn{
-  float: left;
-  width: 150px;
-  font-size: 13px;
-  background-color: lightyellow;
-  clear: left;
-  }
+    #jsalarmclock span {
+        margin-right: 5px;
+    }
+</style>
 
-  #jsalarmclock span{
-  margin-right: 5px;
-  }
-
-  </style>
-
-  <script type="text/javascript">
-
-  /***********************************************
-
-  
-  ***********************************************/
-
-  var jsalarm={
-  	padfield:function(f){
-  		return (f<10)? "0"+f : f
-  	},
-  	showcurrenttime:function(){
-  		var dateobj=new Date()
-  		var ct=this.padfield(dateobj.getHours())+":"+this.padfield(dateobj.getMinutes())+":"+this.padfield(dateobj.getSeconds())
-  		this.ctref.innerHTML=ct
-  		this.ctref.setAttribute("title", ct)
-  		if (typeof this.hourwake!="undefined"){ //if alarm is set
-  			if (this.ctref.title==(this.hourwake+":"+this.minutewake+":"+this.secondwake)){
-  				clearInterval(jsalarm.timer)
-  				window.location=document.getElementById("musicloc").value
-  			}
-  		}
-  	},
-  	init:function(){
-  		var dateobj=new Date()
-  		this.ctref=document.getElementById("jsalarm_ct")
-  		this.submitref=document.getElementById("submitbutton")
-  		this.submitref.onclick=function(){
-  			jsalarm.setalarm()
-  			this.value="Alarm Set"
-  			this.disabled=true
-  			return false
-  		}
-  		this.resetref=document.getElementById("resetbutton")
-  		this.resetref.onclick=function(){
-  		jsalarm.submitref.disabled=false
-  		jsalarm.hourwake=undefined
-  		jsalarm.hourselect.disabled=false
-  		jsalarm.minuteselect.disabled=false
-  		jsalarm.secondselect.disabled=false
-  		return false
-  		}
-  		var selections=document.getElementsByTagName("select")
-  		this.hourselect=selections[0]
-  		this.minuteselect=selections[1]
-  		this.secondselect=selections[2]
-  		for (var i=0; i<60; i++){
-  			if (i<24) //If still within range of hours field: 0-23
-  			this.hourselect[i]=new Option(this.padfield(i), this.padfield(i), false, dateobj.getHours()==i)
-  			this.minuteselect[i]=new Option(this.padfield(i), this.padfield(i), false, dateobj.getMinutes()==i)
-  			this.secondselect[i]=new Option(this.padfield(i), this.padfield(i), false, dateobj.getSeconds()==i)
-
-  		}
-  		jsalarm.showcurrenttime()
-  		jsalarm.timer=setInterval(function(){jsalarm.showcurrenttime()}, 1000)
-  	},
-  	setalarm:function(){
-  		this.hourwake=this.hourselect.options[this.hourselect.selectedIndex].value
-  		this.minutewake=this.minuteselect.options[this.minuteselect.selectedIndex].value
-  		this.secondwake=this.secondselect.options[this.secondselect.selectedIndex].value
-  		this.hourselect.disabled=true
-  		this.minuteselect.disabled=true
-  		this.secondselect.disabled=true
-  	}
-  }
-
-  </script>
 </head>
+
 <body onload="loadDates()">
     <div class="header">
         <h1 id="headerText">ITTP Team Two Calendar</h1>
@@ -380,29 +312,41 @@
         <h4>Add an event</h4>
         <p></p>
         <div class="text">
-            Time: <input id="timeInput" type="text" />
-            Description: <input id="textInput" type="text" />
+            Time:
+            <input id="timeInput" type="text" /> Description:
+            <input id="textInput" type="text" />
         </div>
         <div class="buttons">
             <button onclick="create()"> Create</button>
         </div>
         <button id="close-button" onclick="closeBox()">&#10005</button>
     </div>
-<form action="" method="">
-<div id="jsalarmclock">
-<div><div class="leftcolumn">Set Alarm:</div> <span id="jsalarm_ct" style="letter-spacing: 2px"></span></div>
-<div><div class="leftcolumn">Hour:</div> <span><select></select> Minutes</span> <span><select></select> Seconds</span> <span><select></select> Alert Option</span></div>
-<div><div class="leftcolumn">Set Alarm Action:</div> <input type="text" id="musicloc" size="55" value="https://www.youtube.com/watch?v=iNpXCzaWW1s" /> <span style="font: normal 11px Tahoma">*Location of page to launch</span></div>
-<input type="submit" value="Set Alarm!" id="submitbutton" /> <input type="reset" value="reset" id="resetbutton" />
-</div>
-</form>
+    <form action="" method="">
+        <div id="jsalarmclock">
+            <div>
+                <div class="leftcolumn">Set Alarm:</div>
+                <span id="jsalarm_ct" style="letter-spacing: 2px"></span>
+            </div>
+            <div>
+                <div class="leftcolumn">Hour:</div>
+                <span>
+                    <select></select> Minutes</span>
+                <span>
+                    <select></select> Seconds</span>
+                <span>
+                    <select></select> Alert Option</span>
+            </div>
+            <div>
+                <div class="leftcolumn">Set Alarm Action:</div>
+                <input type="text" id="musicloc" size="55" value="https://www.youtube.com/watch?v=iNpXCzaWW1s"
+                />
+                <span style="font: normal 11px Tahoma">*Location of page to launch</span>
+            </div>
+            <input type="submit" value="Set Alarm!" id="submitbutton" />
+            <input type="reset" value="reset" id="resetbutton" />
+        </div>
+    </form>
 
-
-<script type="text/javascript">
-
-jsalarm.init()
-
-</script>
     <h2>Contact Section</h2>
 
     <div class="container">
@@ -455,6 +399,65 @@ jsalarm.init()
     let today = moment().date();
     let events = [];
 
+    var jsalarm = {
+        padfield: function (f) {
+            return (f < 10) ? "0" + f : f
+        },
+        showcurrenttime: function () {
+            var dateobj = new Date()
+            var ct = this.padfield(dateobj.getHours()) + ":" + this.padfield(dateobj.getMinutes()) + ":" + this.padfield(dateobj.getSeconds())
+            this.ctref.innerHTML = ct
+            this.ctref.setAttribute("title", ct)
+            if (typeof this.hourwake != "undefined") { //if alarm is set
+                if (this.ctref.title == (this.hourwake + ":" + this.minutewake + ":" + this.secondwake)) {
+                    clearInterval(jsalarm.timer)
+                    window.location = document.getElementById("musicloc").value
+                }
+            }
+        },
+        init: function () {
+            var dateobj = new Date()
+            this.ctref = document.getElementById("jsalarm_ct")
+            this.submitref = document.getElementById("submitbutton")
+            this.submitref.onclick = function () {
+                jsalarm.setalarm()
+                this.value = "Alarm Set"
+                this.disabled = true
+                return false
+            }
+            this.resetref = document.getElementById("resetbutton")
+            this.resetref.onclick = function () {
+                jsalarm.submitref.disabled = false
+                jsalarm.hourwake = undefined
+                jsalarm.hourselect.disabled = false
+                jsalarm.minuteselect.disabled = false
+                jsalarm.secondselect.disabled = false
+                return false
+            }
+            var selections = document.getElementsByTagName("select")
+            this.hourselect = selections[0]
+            this.minuteselect = selections[1]
+            this.secondselect = selections[2]
+            for (var i = 0; i < 60; i++) {
+                if (i < 24) //If still within range of hours field: 0-23
+                    this.hourselect[i] = new Option(this.padfield(i), this.padfield(i), false, dateobj.getHours() == i)
+                this.minuteselect[i] = new Option(this.padfield(i), this.padfield(i), false, dateobj.getMinutes() == i)
+                this.secondselect[i] = new Option(this.padfield(i), this.padfield(i), false, dateobj.getSeconds() == i)
+
+            }
+            jsalarm.showcurrenttime()
+            jsalarm.timer = setInterval(function () { jsalarm.showcurrenttime() }, 1000)
+        },
+        setalarm: function () {
+            this.hourwake = this.hourselect.options[this.hourselect.selectedIndex].value
+            this.minutewake = this.minuteselect.options[this.minuteselect.selectedIndex].value
+            this.secondwake = this.secondselect.options[this.secondselect.selectedIndex].value
+            this.hourselect.disabled = true
+            this.minuteselect.disabled = true
+            this.secondselect.disabled = true
+        }
+    }
+
     function resetToPresent() {
         month = moment().month() + 1;
         year = moment().year();
@@ -503,6 +506,8 @@ jsalarm.init()
     }
 
     function loadDates() {
+        jsalarm.init()
+
         //fills the calendar weeks array
         calculateWeeks();
         startTime();
@@ -527,7 +532,7 @@ jsalarm.init()
                 //adds the events to the date
                 for (let i = 0; i < events.length; i++) {
                     if (span.value.format("MMMM DD YYYY") == events[i].date.format("MMMM DD YYYY")) {
-                        span.innerHTML = span.innerHTML + " " + events[i].note + "<br />";
+                        span.innerHTML = span.innerHTML + events[i].time + ": " + events[i].note + "<br />";
                     }
                 }
 
@@ -552,15 +557,17 @@ jsalarm.init()
 
     function create(event) {
         let textInput = document.getElementById("textInput");
+        let timeInput = document.getElementById("timeInput");
         let eventForm = document.getElementById("event-form");
 
         if (textInput.value.length > 0) {
-            events.push({ date: eventForm.value, note: textInput.value });
+            events.push({ date: eventForm.value, time: timeInput.value, note: textInput.value });
         }
 
         eventForm.classList.add("inactive");
         eventForm.classList.remove("active");
         textInput.value = "";
+        timeInput.value = "";
         loadDates();
     }
 
