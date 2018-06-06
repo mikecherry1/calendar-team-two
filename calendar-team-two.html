@@ -9,6 +9,10 @@
             box-sizing: border-box;
             font-family: Arial, Helvetica, sans-serif;
         }
+        
+        #reset {
+            font-size: smaller;
+        }
 
         .mapouter {
             text-align: right;
@@ -118,7 +122,7 @@
         }
 
         .month {
-            padding: 70px 25px;
+            padding: 50px 25px;
             width: 100%;
             background: #3483eb;
         }
@@ -162,14 +166,14 @@
         }
 
         .days {
-            
+
             padding: .9px 0px;
             background: #eee;
             margin: 0;
         }
 
         .days li {
-            overflow: hidden;
+            overflow: auto;
             display: inline-block;
             height: 100px;
             width: 14.2857%;
@@ -262,6 +266,9 @@
             <li id="month-and-year" style="text-align: center;">May
                 <span style="font-size: 18px;">2018</span>
             </li>
+            <li id="reset" onclick="resetToPresent()" style="text-transform: none; text-align: center; font-size: 10px;">
+                <br /> Reset to Present
+            </li>
         </ul>
     </div>
     <div id="day-bar">
@@ -280,7 +287,8 @@
         <h4>Add an event</h4>
         <p></p>
         <div class="text">
-            <input id="textInput" type="text" />
+            Time: <input id="timeInput" type="text" />
+            Description: <input id="textInput" type="text" />
         </div>
         <div class="buttons">
             <button onclick="create()"> Create</button>
@@ -305,23 +313,23 @@
                 </div>
             </div>
             <div class="column">
-            <form action="/action_page.php">
-                <label for="fname">First Name</label>
-                <input type="text" id="fname" name="firstname" placeholder="Your name..">
-                <label for="lname">Last Name</label>
-                <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-                <label for="country">Country</label>
-                <select id="country" name="country">
-                    <option value="australia">Australia</option>
-                    <option value="canada">Canada</option>
-                    <option value="usa">USA</option>
-                </select>
-                <label for="subject">Subject</label>
-                <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
-                <input type="submit" value="Submit">
-            </form>
+                <form action="/action_page.php">
+                    <label for="fname">First Name</label>
+                    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+                    <label for="lname">Last Name</label>
+                    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+                    <label for="country">Country</label>
+                    <select id="country" name="country">
+                        <option value="australia">Australia</option>
+                        <option value="canada">Canada</option>
+                        <option value="usa">USA</option>
+                    </select>
+                    <label for="subject">Subject</label>
+                    <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
         </div>
-    </div>
     </div>
 </body>
 
@@ -338,6 +346,13 @@
     let year = moment().year();
     let today = moment().date();
     let events = [];
+
+    function resetToPresent() {
+        month = moment().month() + 1;
+        year = moment().year();
+
+        loadDates();
+    }
 
     function myMap() {
         var mapProp = {
@@ -396,14 +411,14 @@
                 //create a list item and a span to contain notes
                 let li = document.createElement("li");
                 let span = document.createElement("span");
-                
+
                 li.innerHTML = weeks[i][j].format('D') + "<br />"; //example: innerHTML = 31
                 span.value = weeks[i][j];
                 span.style = "font-size: small";
-                 
+
                 //adds the events to the date
-                for(let i = 0; i < events.length; i++) {
-                    if(span.value.format("MMMM DD YYYY") == events[i].date.format("MMMM DD YYYY")) {
+                for (let i = 0; i < events.length; i++) {
+                    if (span.value.format("MMMM DD YYYY") == events[i].date.format("MMMM DD YYYY")) {
                         span.innerHTML = span.innerHTML + " " + events[i].note + "<br />";
                     }
                 }
@@ -431,8 +446,8 @@
         let textInput = document.getElementById("textInput");
         let eventForm = document.getElementById("event-form");
 
-        if(textInput.value.length > 0) {
-            events.push({date: eventForm.value, note: textInput.value});
+        if (textInput.value.length > 0) {
+            events.push({ date: eventForm.value, note: textInput.value });
         }
 
         eventForm.classList.add("inactive");
@@ -440,7 +455,7 @@
         textInput.value = "";
         loadDates();
     }
-    
+
     function clickedBox(event) {
         let eventForm = document.getElementById("event-form");
         eventForm.classList.remove("inactive");
