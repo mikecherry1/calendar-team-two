@@ -249,32 +249,29 @@
                 margin-top: 0;
             }
         }
+
+        #jsalarmclock {
+            font-family: Tahoma;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        #jsalarmclock div {
+            margin-bottom: 0.8em;
+        }
+
+        #jsalarmclock div.leftcolumn {
+            float: left;
+            width: 150px;
+            font-size: 13px;
+            background-color: lightyellow;
+            clear: left;
+        }
+
+        #jsalarmclock span {
+            margin-right: 5px;
+        }
     </style>
-</head>
-<style type="text/css">
-    #jsalarmclock {
-        font-family: Tahoma;
-        font-weight: bold;
-        font-size: 12px;
-    }
-
-    #jsalarmclock div {
-        margin-bottom: 0.8em;
-    }
-
-    #jsalarmclock div.leftcolumn {
-        float: left;
-        width: 150px;
-        font-size: 13px;
-        background-color: lightyellow;
-        clear: left;
-    }
-
-    #jsalarmclock span {
-        margin-right: 5px;
-    }
-</style>
-
 </head>
 
 <body onload="loadDates()">
@@ -338,8 +335,7 @@
             </div>
             <div>
                 <div class="leftcolumn">Set Alarm Action:</div>
-                <input type="text" id="musicloc" size="55" value="https://www.youtube.com/watch?v=iNpXCzaWW1s"
-                />
+                <input type="text" id="musicloc" size="55" value="https://www.youtube.com/watch?v=iNpXCzaWW1s" />
                 <span style="font: normal 11px Tahoma">*Location of page to launch</span>
             </div>
             <input type="submit" value="Set Alarm!" id="submitbutton" />
@@ -507,6 +503,12 @@
 
     function loadDates() {
         jsalarm.init()
+
+        if(month == moment().month() + 1 && year == moment().year()) {
+            document.getElementById("reset").style.visibility = "hidden"; 
+        } else {
+            document.getElementById("reset").style.visibility = "visible"; 
+        }
 
         //fills the calendar weeks array
         calculateWeeks();
