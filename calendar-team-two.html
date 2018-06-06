@@ -504,11 +504,13 @@
     function loadDates() {
         jsalarm.init()
 
-        if(month == moment().month() + 1 && year == moment().year()) {
-            document.getElementById("reset").style.visibility = "hidden"; 
+        if (month == moment().month() + 1 && year == moment().year()) {
+            document.getElementById("reset").style.visibility = "hidden";
         } else {
-            document.getElementById("reset").style.visibility = "visible"; 
+            document.getElementById("reset").style.visibility = "visible";
         }
+
+
 
         //fills the calendar weeks array
         calculateWeeks();
@@ -527,6 +529,13 @@
                 let li = document.createElement("li");
                 let span = document.createElement("span");
 
+                //makes a date string like 2018-6-15 
+                let todaysDate = "" + moment().year() + "-" + (moment().month() + 1) + "-" + moment().date();
+
+                if (weeks[i][j].unix() == moment(todaysDate, "YYYY-MM-DD").unix()) {
+                    li.style.backgroundColor = "lightblue"; 
+                }
+
                 li.innerHTML = weeks[i][j].format('D') + "<br />"; //example: innerHTML = 31
                 span.value = weeks[i][j];
                 span.style = "font-size: small";
@@ -542,13 +551,6 @@
                 if (weeks[i][j].format('M') != month) {
                     li.setAttribute("style", "color: gray; font-style: italic;");
                 }
-
-                /*probably a bad way to check where today is on the calendar
-                if (weeks[i][j].format('D') == moment().date()
-                    && weeks[i][j].format('M') == moment().month() + 1
-                    && weeks[i][j].format('Y') == moment().year()) {
-                    li.innerHTML = "<span class='active'>" weeks[i][j].format('D') + "</span>;
-                }*/
 
                 li.onclick = clickedBox;
                 li.appendChild(span);
