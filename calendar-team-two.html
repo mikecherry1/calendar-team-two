@@ -346,13 +346,8 @@
                 <span>
                     <select></select> Alert Option</span>
             </div>
-            <div>
-                <div class="leftcolumn">Set Alarm Action:</div>
-                <input type="text" id="musicloc" size="55" value="https://www.youtube.com/watch?v=iNpXCzaWW1s" />
-                <span style="font: normal 11px Tahoma">*Location of page to launch</span>
-            </div>
             <input type="submit" value="Set Alarm!" id="submitbutton" />
-            <input type="reset" value="reset" id="resetbutton" />
+            <input type="button" value="Reset" id="resetbutton" />
         </div>
     </form>
 
@@ -411,6 +406,9 @@
 
     var input = document.getElementById("textInput");
 
+    var alarm = new Audio("http://soundbible.com/grab.php?id=2197&type=mp3");
+    
+
     input.addEventListener("keydown", function (event) {
         if (event.keyCode === ENTER_KEY) {
             create();
@@ -429,7 +427,8 @@
             if (typeof this.hourwake != "undefined") { //if alarm is set
                 if (this.ctref.title == (this.hourwake + ":" + this.minutewake + ":" + this.secondwake)) {
                     clearInterval(jsalarm.timer)
-                    window.location = document.getElementById("musicloc").value
+
+                    alarm.play()
                 }
             }
         },
@@ -450,6 +449,9 @@
                 jsalarm.hourselect.disabled = false
                 jsalarm.minuteselect.disabled = false
                 jsalarm.secondselect.disabled = false
+                jsalarm.showcurrenttime()
+                jsalarm.timer = setInterval(function () { jsalarm.showcurrenttime() }, 1000)
+
                 return false
             }
             var selections = document.getElementsByTagName("select")
@@ -473,7 +475,8 @@
             this.hourselect.disabled = true
             this.minuteselect.disabled = true
             this.secondselect.disabled = true
-        }
+
+        },
     }
 
     function resetToPresent() {
@@ -524,15 +527,13 @@
     }
 
     function loadDates() {
-        jsalarm.init()
+        jsalarm.init();
 
         if (month == moment().month() + 1 && year == moment().year()) {
             document.getElementById("reset").style.visibility = "hidden";
         } else {
             document.getElementById("reset").style.visibility = "visible";
         }
-
-
 
         //fills the calendar weeks array
         calculateWeeks();
@@ -598,6 +599,7 @@
     }
 
     function clickedBox(event) {
+
         let eventForm = document.getElementById("event-form");
         eventForm.classList.remove("inactive");
         eventForm.classList.add("active");
