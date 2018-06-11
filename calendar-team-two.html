@@ -9,24 +9,24 @@
             box-sizing: border-box;
             font-family: Arial, Helvetica, sans-serif;
         }
-        
+
         #reset {
             font-size: smaller;
         }
-        
+
         .mapouter {
             text-align: right;
             height: 500px;
             width: 600px;
         }
-        
+
         .gmap_canvas {
             overflow: hidden;
             background: none !important;
             height: 500px;
             width: 600px;
         }
-        
+
         #event-form {
             display: none;
             box-shadow: 0 2px 4px #3483e;
@@ -40,41 +40,41 @@
             flex-direction: column;
             align-content: space-between;
         }
-        
+
         #event-form.active {
             display: flex;
         }
-        
+
         #event-form h4 {
             margin: 0 0 0.75rem 0;
             color: gray;
             font-weight: normal;
             font-size: 1.15rem;
         }
-        
+
         #event-form p {
             font-size: 0.85rem;
             margin: 0 0 0.85rem 0;
         }
-        
+
         #event-form>* {
             width: 100%;
         }
-        
+
         #event-form .text {
             margin-bottom: 0.75rem;
         }
-        
+
         #event-form .text input[type=text] {
             width: calc(100% - 0.75rem);
             padding: 0.25rem;
             font-size: 0.75rem;
         }
-        
+
         #event-form .buttons {
             text-align: right;
         }
-        
+
         #event-form .buttons button {
             padding: 0.5rem;
             background-color: blue;
@@ -83,16 +83,16 @@
             border-radius: 2px;
             color: white;
         }
-        
+
         #event-form .buttons button:focus {
             outline: none;
         }
-        
+
         #event-form .buttons button:hover {
             background-color: #1414ff;
             border: 1px solid blue;
         }
-        
+
         #event-form #close-button {
             margin: 0;
             padding: 0;
@@ -107,31 +107,31 @@
             top: 0.6rem;
             cursor: pointer;
         }
-        
+
         #event-form #close-button:focus {
             outline: none;
         }
-        
+
         .header {
             padding: 50px;
             width: 100%;
         }
-        
+
         ul {
             list-style-type: none;
         }
-        
+
         .month {
             padding: 50px 25px;
             width: 100%;
             background: linear-gradient(180deg, rgb(252, 170, 63), rgb(199, 107, 2));
         }
-        
+
         .month ul {
             margin: 0;
             padding: 0;
         }
-        
+
         .month ul li {
             color: white;
             font-family: Impact, Charcoal, sans-serif;
@@ -140,17 +140,17 @@
             padding-top: 20px;
             text-transform: uppercase;
         }
-        
+
         .month .prev {
             float: left;
             padding: 10px;
         }
-        
+
         .month .next {
             float: right;
             padding: 10px;
         }
-        
+
         #day-bar {
             display: flex;
             justify-content: flex-start;
@@ -159,7 +159,7 @@
             background-color: #ddd;
             width: 100%;
         }
-        
+
         #day-bar div {
             display: inline-block;
             width: 14.2857%;
@@ -167,13 +167,13 @@
             text-align: center;
             font-size: 20px;
         }
-        
+
         .days {
             padding: .9px 0px;
             background: white;
             margin: 0;
         }
-        
+
         .days li {
             overflow: auto;
             ;
@@ -186,19 +186,20 @@
             border: 1px solid;
             padding: 20px;
         }
-        
+
         .days li:hover {
             background-color: #53b4cc;
             color: white;
         }
-        
+
         .days span.active {
             padding: 5px;
             background: #1adc9c;
             color: white;
         }
+
         /* Style inputs */
-        
+
         input[type=text],
         select,
         textarea {
@@ -209,7 +210,7 @@
             margin-bottom: 16px;
             resize: vertical;
         }
-        
+
         input[type=submit] {
             background-color: #4CAF50;
             color: white;
@@ -217,34 +218,38 @@
             border: none;
             cursor: pointer;
         }
-        
+
         input[type=submit]:hover {
             background-color: #45a049;
         }
+
         /* Style the container/contact section */
-        
+
         .container {
             border-radius: 5px;
             background-color: #f2f2f2;
             padding: 10px;
         }
+
         /* Create two columns that float next to eachother */
-        
+
         .column {
             float: left;
             width: 50%;
             margin-top: 6px;
             padding: 20px;
         }
+
         /* Clear floats after the columns */
-        
+
         .row:after {
             content: "";
             display: table;
             clear: both;
         }
+
         /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-        
+
         @media screen and (max-width: 600px) {
             .column,
             input[type=submit] {
@@ -252,17 +257,17 @@
                 margin-top: 0;
             }
         }
-        
+
         #jsalarmclock {
             font-family: Tahoma;
             font-weight: bold;
             font-size: 12px;
         }
-        
+
         #jsalarmclock div {
             margin-bottom: 0.8em;
         }
-        
+
         #jsalarmclock div.leftcolumn {
             float: left;
             width: 150px;
@@ -270,29 +275,41 @@
             background-color: lightyellow;
             clear: left;
         }
-        
+
         #jsalarmclock span {
             margin-right: 5px;
         }
-        
     </style>
 </head>
 
 <body onload="loadDates()">
     <div style="background-color:rgb(255, 255, 255)" class="header">
-        <h1 id="headerText" title="Welcome to Team2 User-friendly Calendar">ITTP Team Two Calendar</h1>
-        <div style="text-align:justify;padding:1em 0;"> <h4><a style="text-decoration:none;" href="https://www.zeitverschiebung.net/en/city/4744091"><span style="color:gray;"></span><br /></a></h4> <iframe src="https://www.zeitverschiebung.net/clock-widget-iframe-v2?language=en&size=small&timezone=America%2FNew_York" width="20%" height="90" frameborder="0" seamless></iframe> </div>
-       <!-- <div id="time"></div>-->
+        <h1 id="headerText" style="display:block;" title="Welcome to Team2 User-friendly Calendar">ITTP Team Two Calendar</h1>
+        <div>
+            <iframe style="display:block;" src="https://www.zeitverschiebung.net/clock-widget-iframe-v2?language=en&size=small&timezone=America%2FNew_York"
+               height="90" frameborder="0"></iframe>
+        </div>
+        <!-- <div id="time"></div>-->
     </div>
     <div class="month">
         <ul>
-            <li onclick="decrementYear()" class="prev"><button type="button" id="myBtn1">Prev Year</button></li>
-            <li onclick="decrementMonth()" class="prev"><button type="button" id="myBtn2">Prev Month </button></li>
-            <li onclick="incrementYear()" class="next"><button type="button" id="myBtn3">Next Year</button></li>
-            <li onclick="incrementMonth()" class="next"><button type="button" id="myBtn4">Next Month</button></li>
+            <li onclick="decrementYear()" class="prev">
+                <button type="button" id="myBtn1">Prev Year</button>
+            </li>
+            <li onclick="decrementMonth()" class="prev">
+                <button type="button" id="myBtn2">Prev Month </button>
+            </li>
+            <li onclick="incrementYear()" class="next">
+                <button type="button" id="myBtn3">Next Year</button>
+            </li>
+            <li onclick="incrementMonth()" class="next">
+                <button type="button" id="myBtn4">Next Month</button>
+            </li>
             <li id="month" style="text-align: center;"></li>
             <li id="year" style="font-size: 16px; text-align: center;"></li>
-            <li id="reset" style="text-align: center;" onclick="resetToPresent()" class="reset"><button type="button" id="resetButton">Reset to Present</button></li>
+            <li id="reset" style="text-align: center;" onclick="resetToPresent()" class="reset">
+                <button type="button" id="resetButton">Reset to Present</button>
+            </li>
 
         </ul>
     </div>
@@ -339,23 +356,24 @@
             <input type="submit" value="Set Alarm!" id="submitbutton" />
             <input type="button" value="Reset" id="resetbutton" />
         </div>
-       
+
     </form>
 
     <div style="background-color:gainsboro">
-        <button type="button" onclick="alert('Input data in the fields below')" style="background-color:darkorange"  title="Double check your update and keep other users informed">Map and Message Section</button>
+        <button type="button" onclick="alert('Input data in the fields below')" style="background-color:darkorange" title="Double check your update and keep other users informed">Map and Message Section</button>
     </div>
 
     <div class="container">
         <div style="text-align:center">
             <h2 title="You may notify team members via the fields below ">Contact Us</h2>
-            <p  title="You may click the Google profile icon to notify updates via t2@team.com">Team Two member, or leave us a message:</p>
+            <p title="You may click the Google profile icon to notify updates via t2@team.com">Team Two member, or leave us a message:</p>
         </div>
         <div class="row">
             <div class="column">
                 <div class="mapouter" id="map" style="width:100%;height:500px">
                     <div class="gmap_canvas">
-                        <iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=furnace rd,alexandria&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
+                        <iframe width="600" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=furnace rd,alexandria&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                            frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe>
                     </div>
                 </div>
             </div>
@@ -374,7 +392,7 @@
                     <label for="subject">Subject</label>
                     <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
                     <input type="submit" value="Submit">
-                     
+
                 </form>
             </div>
         </div>
@@ -401,17 +419,17 @@
     var alarm = new Audio("http://soundbible.com/grab.php?id=2197&type=mp3");
 
 
-    input.addEventListener("keydown", function(event) {
+    input.addEventListener("keydown", function (event) {
         if (event.keyCode === ENTER_KEY) {
             create();
         }
     });
 
     var jsalarm = {
-        padfield: function(f) {
+        padfield: function (f) {
             return (f < 10) ? "0" + f : f
         },
-        showcurrenttime: function() {
+        showcurrenttime: function () {
             var dateobj = new Date()
             var ct = this.padfield(dateobj.getHours()) + ":" + this.padfield(dateobj.getMinutes()) + ":" + this.padfield(dateobj.getSeconds())
             this.ctref.innerHTML = ct
@@ -424,25 +442,25 @@
                 }
             }
         },
-        init: function() {
+        init: function () {
             var dateobj = new Date()
             this.ctref = document.getElementById("jsalarm_ct")
             this.submitref = document.getElementById("submitbutton")
-            this.submitref.onclick = function() {
+            this.submitref.onclick = function () {
                 jsalarm.setalarm()
                 this.value = "Alarm Set"
                 this.disabled = true
                 return false
             }
             this.resetref = document.getElementById("resetbutton")
-            this.resetref.onclick = function() {
+            this.resetref.onclick = function () {
                 jsalarm.submitref.disabled = false
                 jsalarm.hourwake = undefined
                 jsalarm.hourselect.disabled = false
                 jsalarm.minuteselect.disabled = false
                 jsalarm.secondselect.disabled = false
                 jsalarm.showcurrenttime()
-                jsalarm.timer = setInterval(function() {
+                jsalarm.timer = setInterval(function () {
                     jsalarm.showcurrenttime()
                 }, 1000)
 
@@ -460,11 +478,11 @@
 
             }
             jsalarm.showcurrenttime()
-            jsalarm.timer = setInterval(function() {
+            jsalarm.timer = setInterval(function () {
                 jsalarm.showcurrenttime()
             }, 1000)
         },
-        setalarm: function() {
+        setalarm: function () {
             this.hourwake = this.hourselect.options[this.hourselect.selectedIndex].value
             this.minutewake = this.minuteselect.options[this.minuteselect.selectedIndex].value
             this.secondwake = this.secondselect.options[this.secondselect.selectedIndex].value
