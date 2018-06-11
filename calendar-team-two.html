@@ -281,7 +281,7 @@
 
 <body onload="loadDates()">
     <div style="background-color:rgb(255, 255, 255)" class="header">
-        <h1 id="headerText">ITTP Team Two Calendar</h1>
+        <h1 id="headerText" title="Welcome to Team2 user-friendly calender">ITTP Team Two Calendar</h1>
         <div id="time"></div>
     </div>
     <div class="month">
@@ -343,13 +343,13 @@
     </form>
 
     <div style="background-color:gainsboro">
-        <button type="button" onclick="alert('Input data in the fields below')" style="background-color:darkorange">Map and Message Section</button>
+        <button type="button" onclick="alert('Input data in the fields below')" style="background-color:darkorange"  title="Double check your update and keep other users informed">Map and Message Section</button>
     </div>
 
     <div class="container">
         <div style="text-align:center">
-            <h2>Contact Us</h2>
-            <p>Team Two member, or leave us a message:</p>
+            <h2 title="You may notify team members via the fields below ">Contact Us</h2>
+            <p  title="You may click the Google profile icon to notify updates via t2@team.com">Team Two member, or leave us a message:</p>
         </div>
         <div class="row">
             <div class="column">
@@ -362,9 +362,9 @@
             <div class="column">
                 <form action="/action_page.php">
                     <label for="fname">First Name</label>
-                    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+                    <input type="text" id="fname" name="firstname" placeholder="Enter first your name..">
                     <label for="lname">Last Name</label>
-                    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+                    <input type="text" id="lname" name="lastname" placeholder="Enter your last name..">
                     <label for="country">Country</label>
                     <select id="country" name="country">
                         <option value="australia">Australia</option>
