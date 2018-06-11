@@ -9,24 +9,24 @@
             box-sizing: border-box;
             font-family: Arial, Helvetica, sans-serif;
         }
-
+        
         #reset {
             font-size: smaller;
         }
-
+        
         .mapouter {
             text-align: right;
             height: 500px;
             width: 600px;
         }
-
+        
         .gmap_canvas {
             overflow: hidden;
             background: none !important;
             height: 500px;
             width: 600px;
         }
-
+        
         #event-form {
             display: none;
             box-shadow: 0 2px 4px #3483e;
@@ -40,42 +40,42 @@
             flex-direction: column;
             align-content: space-between;
         }
-
+        
         #event-form.active {
             display: flex;
         }
-
+        
         #event-form h4 {
             margin: 0 0 0.75rem 0;
             color: gray;
             font-weight: normal;
             font-size: 1.15rem;
         }
-
+        
         #event-form p {
             font-size: 0.85rem;
             margin: 0 0 0.85rem 0;
         }
-
+        
         #event-form>* {
             width: 100%;
         }
-
+        
         #event-form .text {
             margin-bottom: 0.75rem;
         }
-
+        
         #event-form .text input[type=text] {
             width: calc(100% - 0.75rem);
             padding: 0.25rem;
             font-size: 0.75rem;
         }
-
+        
         #event-form .buttons {
             text-align: right;
             color: blue;
         }
-
+        
         #event-form .buttons button {
             padding: 0.5rem;
             background-color: blue;
@@ -84,16 +84,16 @@
             border-radius: 2px;
             color: white;
         }
-
+        
         #event-form .buttons button:focus {
             outline: none;
         }
-
+        
         #event-form .buttons button:hover {
             background-color: #1414ff;
             border: 1px solid blue;
         }
-
+        
         #event-form #close-button {
             margin: 0;
             padding: 0;
@@ -108,52 +108,50 @@
             top: 0.6rem;
             cursor: pointer;
         }
-
+        
         #event-form #close-button:focus {
             outline: none;
         }
-
+        
         .header {
             padding: 50px;
             width: 100%;
         }
-
+        
         ul {
             list-style-type: none;
         }
-
+        
         .month {
             padding: 50px 25px;
             width: 100%;
-            background: #3483eb;
+            background: linear-gradient(180deg, rgb(252, 170, 63), rgb(199, 107, 2));
         }
-
-        .month:hover {
-            background-color: #6d806e;
-            color: white;
-        }
-
+        
         .month ul {
             margin: 0;
             padding: 0;
         }
-
+        
         .month ul li {
             color: white;
-            font-size: 20px;
+            font-family: Impact, Charcoal, sans-serif;
+            letter-spacing: 5px;
+            font-size: 40px;
+            padding-top: 20px;
             text-transform: uppercase;
         }
-
+        
         .month .prev {
             float: left;
             padding: 10px;
         }
-
+        
         .month .next {
             float: right;
             padding: 10px;
         }
-
+        
         #day-bar {
             display: flex;
             justify-content: flex-start;
@@ -162,21 +160,21 @@
             background-color: #ddd;
             width: 100%;
         }
-
+        
         #day-bar div {
             display: inline-block;
             width: 14.2857%;
-            color: gray;
+            color: rgb(63, 63, 62);
             text-align: center;
             font-size: 20px;
         }
-
+        
         .days {
             padding: .9px 0px;
-            background: #eee;
+            background: white;
             margin: 0;
         }
-
+        
         .days li {
             overflow: auto;
             ;
@@ -185,23 +183,23 @@
             width: 14.2857%;
             text-align: center;
             font-size: 20px;
-            color: #777;
+            color: black;
             border: 1px solid;
             padding: 20px;
         }
-
+        
         .days li:hover {
             background-color: #53b4cc;
             color: white;
         }
-
+        
         .days span.active {
             padding: 5px;
             background: #1adc9c;
             color: white;
         }
         /* Style inputs */
-
+        
         input[type=text],
         select,
         textarea {
@@ -212,7 +210,7 @@
             margin-bottom: 16px;
             resize: vertical;
         }
-
+        
         input[type=submit] {
             background-color: #4CAF50;
             color: white;
@@ -220,19 +218,19 @@
             border: none;
             cursor: pointer;
         }
-
+        
         input[type=submit]:hover {
             background-color: #45a049;
         }
         /* Style the container/contact section */
-
+        
         .container {
             border-radius: 5px;
             background-color: #f2f2f2;
             padding: 10px;
         }
         /* Create two columns that float next to eachother */
-
+        
         .column {
             float: left;
             width: 50%;
@@ -240,14 +238,14 @@
             padding: 20px;
         }
         /* Clear floats after the columns */
-
+        
         .row:after {
             content: "";
             display: table;
             clear: both;
         }
         /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-
+        
         @media screen and (max-width: 600px) {
             .column,
             input[type=submit] {
@@ -255,17 +253,17 @@
                 margin-top: 0;
             }
         }
-
+        
         #jsalarmclock {
             font-family: Tahoma;
             font-weight: bold;
             font-size: 12px;
         }
-
+        
         #jsalarmclock div {
             margin-bottom: 0.8em;
         }
-
+        
         #jsalarmclock div.leftcolumn {
             float: left;
             width: 150px;
@@ -273,7 +271,7 @@
             background-color: lightyellow;
             clear: left;
         }
-
+        
         #jsalarmclock span {
             margin-right: 5px;
         }
@@ -281,7 +279,7 @@
 </head>
 
 <body onload="loadDates()">
-    <div style="background-color:lightgray" class="header">
+    <div style="background-color:rgb(255, 255, 255)" class="header">
         <h1 id="headerText">ITTP Team Two Calendar</h1>
         <div id="time"></div>
     </div>
@@ -292,10 +290,9 @@
             <li onclick="incrementYear()" class="next"><button type="button" id="myBtn">Next Year</button></li>
             <li onclick="incrementMonth()" class="next"><button type="button" id="myBtn">Next Month</button></li>
             <li id="month-and-year" style="text-align: center;">May
-                <span style="font-size: 18px;">2018</span>
+                <span style="font-size: 16px;">2018</span>
             </li>
-            <li id="reset" onclick="resetToPresent()" style="text-transform: none; text-align: center; font-size: 10px;">
-                <br /> Reset to Present
+            <li id="reset" style="text-align: center;" onclick="resetToPresent()" class="reset"><button type="button" id="myBtn"><br /> Reset to Present</button>
             </li>
         </ul>
     </div>
@@ -344,7 +341,9 @@
         </div>
     </form>
 
-    <div style="background-color:lightgray"> <h2>Contact Section</h2></div>
+    <div style="background-color:gainsboro">
+        <button type="button" onclick="alert('Input data in the fields below')" style="background-color:darkorange">Map and Message Section</button>
+    </div>
 
     <div class="container">
         <div style="text-align:center">
@@ -569,7 +568,7 @@
 
                 //grays out the dates not in this month
                 if (weeks[i][j].format('M') != month) {
-                    li.setAttribute("style", "color: gray; font-style: italic;");
+                    li.setAttribute("style", "color: grey; font-style: italic;");
                 }
 
                 li.onclick = clickedBox;
