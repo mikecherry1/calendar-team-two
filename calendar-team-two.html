@@ -139,7 +139,7 @@
             font-family: Impact, Charcoal, sans-serif;
             letter-spacing: 5px;
             font-size: 40px;
-            padding-top: 20px;
+            padding-top: 15px;
             text-transform: uppercase;
         }
         
@@ -291,9 +291,8 @@
             <li onclick="decrementMonth()" class="prev"><button type="button" id="myBtn2">Prev Month </button></li>
             <li onclick="incrementYear()" class="next"><button type="button" id="myBtn3">Next Year</button></li>
             <li onclick="incrementMonth()" class="next"><button type="button" id="myBtn4">Next Month</button></li>
-            <li id="month-and-year" style="text-align: center;">May
-                <span style="font-size: 16px;">2018</span>
-            </li>
+            <li id="month" style="text-align: center;"></li>
+            <li id="year" style="font-size: 16px; text-align: center;"></li>
             <li id="reset" style="text-align: center;" onclick="resetToPresent()" class="reset"><button type="button" id="resetButton">Reset to Present</button>
             </li>
         </ul>
@@ -446,6 +445,9 @@
                     jsalarm.showcurrenttime()
                 }, 1000)
 
+                alarm.pause();
+                alarm.currentTime = 0;
+
                 return false
             }
             var selections = document.getElementsByTagName("select")
@@ -540,8 +542,12 @@
         let days = document.getElementsByClassName("days")[0];
 
         //gets the month and year and assigns the date to this element
-        let monthAndYear = document.getElementById("month-and-year");
-        monthAndYear.innerHTML = formattedDate();
+        let currentMonth = document.getElementById("month");
+        let currentYear = document.getElementById("year");
+
+        let splitDate = formattedDate().split(" ");
+        currentMonth.innerHTML = splitDate[0];
+        currentYear.innerHTML = splitDate[1];
 
         //adds the calculated dates to the calendar
         for (let i = 0; i < weeks.length; i++) {
