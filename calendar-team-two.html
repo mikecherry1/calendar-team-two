@@ -1,4 +1,3 @@
-
 <!-- Team 2 -->
 
 <html>
@@ -74,7 +73,6 @@
         
         #event-form .buttons {
             text-align: right;
-            color: blue;
         }
         
         #event-form .buttons button {
@@ -139,7 +137,7 @@
             font-family: Impact, Charcoal, sans-serif;
             letter-spacing: 5px;
             font-size: 40px;
-            padding-top: 15px;
+            padding-top: 20px;
             text-transform: uppercase;
         }
         
@@ -276,24 +274,25 @@
         #jsalarmclock span {
             margin-right: 5px;
         }
-
     </style>
 </head>
 
 <body onload="loadDates()">
     <div style="background-color:rgb(255, 255, 255)" class="header">
-        <h1 id="headerText" title="Welcome to Team2 User-friendly Calendar">ITTP Team Two Calendar</h1>
-        <div id="time"></div>
+        <h1 id="headerText" title="Welcome to Team2 user-friendly calender">ITTP Team Two Calendar</h1>
+        <div style="text-align:left;padding:1em 0;"> <h4><a style="text-decoration:none;" href="https://www.zeitverschiebung.net/en/city/4744091"><span style="color:gray;"></span><br /></a></h4> <iframe src="https://www.zeitverschiebung.net/clock-widget-iframe-v2?language=en&size=small&timezone=America%2FNew_York" width="10%" height="90" frameborder="0" seamless></iframe> </div>
+       <!-- <div id="time"></div>-->
     </div>
     <div class="month">
         <ul>
-            <li onclick="decrementYear()" class="prev"><button type="button" id="myBtn1">Prev Year</button></li>
-            <li onclick="decrementMonth()" class="prev"><button type="button" id="myBtn2">Prev Month </button></li>
-            <li onclick="incrementYear()" class="next"><button type="button" id="myBtn3">Next Year</button></li>
-            <li onclick="incrementMonth()" class="next"><button type="button" id="myBtn4">Next Month</button></li>
-            <li id="month" style="text-align: center;"></li>
-            <li id="year" style="font-size: 16px; text-align: center;"></li>
-            <li id="reset" style="text-align: center;" onclick="resetToPresent()" class="reset"><button type="button" id="resetButton">Reset to Present</button>
+            <li onclick="decrementYear()" class="prev"><button type="button" id="myBtn">Prev Year</button></li>
+            <li onclick="decrementMonth()" class="prev"><button type="button" id="myBtn">Prev Month </button></li>
+            <li onclick="incrementYear()" class="next"><button type="button" id="myBtn">Next Year</button></li>
+            <li onclick="incrementMonth()" class="next"><button type="button" id="myBtn">Next Month</button></li>
+            <li id="month-and-year" style="text-align: center;">May
+                <span style="font-size: 16px;">2018</span>
+            </li>
+            <li id="reset" style="text-align: center;" onclick="resetToPresent()" class="reset"><button type="button" id="myBtn"><br /> Reset to Present</button>
             </li>
         </ul>
     </div>
@@ -329,7 +328,7 @@
                 <span id="jsalarm_ct" style="letter-spacing: 2px"></span>
             </div>
             <div>
-                <div class="leftcolumn">Hour:</div>
+                <div class="leftcolumn" title="Real Time in GMT">Hour:</div>
                 <span>
                     <select></select> Minutes</span>
                 <span>
@@ -340,6 +339,7 @@
             <input type="submit" value="Set Alarm!" id="submitbutton" />
             <input type="button" value="Reset" id="resetbutton" />
         </div>
+       
     </form>
 
     <div style="background-color:gainsboro">
@@ -374,6 +374,7 @@
                     <label for="subject">Subject</label>
                     <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
                     <input type="submit" value="Submit">
+                     
                 </form>
             </div>
         </div>
@@ -444,9 +445,6 @@
                 jsalarm.timer = setInterval(function() {
                     jsalarm.showcurrenttime()
                 }, 1000)
-
-                alarm.pause();
-                alarm.currentTime = 0;
 
                 return false
             }
@@ -537,17 +535,13 @@
 
         //fills the calendar weeks array
         calculateWeeks();
-        startTime();
+        //startTime();
         //gets the unordered list that contains the days
         let days = document.getElementsByClassName("days")[0];
 
         //gets the month and year and assigns the date to this element
-        let currentMonth = document.getElementById("month");
-        let currentYear = document.getElementById("year");
-
-        let splitDate = formattedDate().split(" ");
-        currentMonth.innerHTML = splitDate[0];
-        currentYear.innerHTML = splitDate[1];
+        let monthAndYear = document.getElementById("month-and-year");
+        monthAndYear.innerHTML = formattedDate();
 
         //adds the calculated dates to the calendar
         for (let i = 0; i < weeks.length; i++) {
@@ -563,7 +557,7 @@
                     li.style.backgroundColor = "lightblue";
                 }
 
-                li.innerHTML = weeks[i][j].format('D') + "<br />"; //example: innerHTML = 31
+                li.innerHTML = weeks[i][j].format('DD') + "<br />"; //example: innerHTML = 31
                 span.value = weeks[i][j];
                 span.style = "font-size: small";
 
